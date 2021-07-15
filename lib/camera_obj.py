@@ -46,7 +46,8 @@ class TimeLapseCam():
                 if channel == '' else camera.capture("Pictures/Manual_{}.jpg".format(cur_time_str))
             camera.stop_preview()
             write_to_log("Picture taken at {}".format(cur_time_str))
-            self.sync("single",self.save_path + "/" + cur_time_str + ".jpg")
+            self.sync("single",self.save_path + "/" + cur_time_str + ".jpg") \
+                if channel == '' else self.sync("single", self.save_path + "/Manual_" + cur_time_str + ".jpg")
             lost_time = t.time() - start 
             return lost_time
         
