@@ -1,6 +1,7 @@
 import urllib
 import subprocess
-
+import Rpi.GPIO as GPIO
+import time as t
 
 def time_in_range(start, end, current):
     return start<= current <= end
@@ -37,10 +38,18 @@ def connect(host="http://google.com"):
 
 def sync_script(channel):
     try:
-        subprocess.call(['sh', 'sync_scripst/sync_weekly.sh', '>>', 'log.txt'])
+        subprocess.call(['sh', 'sync_scripts/sync_weekly.sh', '>>', 'log.txt'])
     except Exception as e:
 	    print("Couldnt upload files.")
 
 
+def blink_LED(freq, count, LED):
+    for i in range(count):
+        GPIO.output(LED, GPIO.HIGH)
+        t.sleep(freq)
+        GPIO.output(LED, GPIO.LOW)
+        t.sleep(freq)
 
-
+def write_to_log(text, log_file='log.txt'):
+    with open(log_file, "a") as f:
+        f.write(text)

@@ -1,11 +1,13 @@
-from picamera import PiCamera
-import RPi.GPIO as GPIO
 import datetime
 import time as t
 import subprocess
 import os
 import logging
+
+from picamera import PiCamera
 from pathlib import Path
+from lib.utils import read_config
+from lib.utils import write_to_log
 
 class TimeLapseCam():
 
@@ -20,10 +22,10 @@ class TimeLapseCam():
         self.save_path = path
         
         # Ensure folder for Pictures exists and is empty
-        print("Creating save space...")
+        write_to_log("Creating save space...")
         if not os.path.exists(path):
             Path(path).mkdir(parents=True)
-        print("Done.")
+        write_to_log("Done.")
 
         # Create logging instance
         if logg == True:
@@ -38,15 +40,13 @@ class TimeLapseCam():
         with PiCamera() as camera:
             camera.resolution = self.resolution
             cur_time_str = datetime.datetime.now().strftime("%d-%b-%Y-(%H-%M-%S)")
-            GPIO.output(self.LED, GPIO.HIGH)
             camera.start_preview()
             t.sleep(2)
             camera.capture("Pictures/{}.jpg".format(cur_time_str)) \
                 if channel == '' else camera.capture("Pictures/Manual_{}.jpg".format(cur_time_str))
             camera.stop_preview()
-            print("Picture taken at {}".format(cur_time_str))
-            print(cur_time_str + ".jpg")
-	    self.sync("single",self.save_path + "/" + cur_time_str + ".jpg")
+            write_to_log("Picture taken at {}".format(cur_time_str))
+            self.sync("single",self.save_path + "/" + cur_time_str + ".jpg")
             lost_time = t.time() - start 
             return lost_time
         
@@ -57,26 +57,27 @@ class TimeLapseCam():
                subprocess.call(['sh', 'sync_scripts/sync_single.sh', str(file_name)])
             except Exception as e:
                 self.logger.exception(e)
-                print("Something went wrong during single upload.")
+                write_to_log("Something went wrong during single upload.")
 
         elif subscript == "daily":
             try:
-	            subprocess.call(['sh','sync_scripts/sync_daily.sh', '>>','log.txt'])
+                subprocess.call(['sh','sync_scripts/sync_daily.sh', '>>','log.txt'])
+                self.update_config(read_config())
             except Exception as e:
                 self.logger.exception(e)
-                print("Something went wrong during daily upload.")
-
+                write_to_log("Something went wrong during daily upload.")
+                
         elif subscript == "weekly":
             try:
                 subprocess.call(['sh', 'sync_scripts/sync_weekly.sh', '>>', 'log.txt'])
             except Exception as e:
                 self.logger.exception(e)
-                print("Something went wrong during weekly upload.")
+                write_to_log("Something went wrong during weekly upload.")
 
         else:
-            print("Subscript not found. No uploading")
+            write_to_log("Subscript not found. No uploading")
 
-    def update_config(self, interval="", start_time="", shooting_days="", stop_time=""):
+    def update_config(self, interval="", shooting_days="", start_time="",  stop_time=""):
         if interval != "":
             self.interval = interval
         if start_time != "":
@@ -86,9 +87,6 @@ class TimeLapseCam():
         if shooting_days != "":
             self.shooting_days = shooting_days
             
-    def blink_LED(self, freq, count):
-        for i in range(count):
-            GPIO.output(self.LED, GPIO.HIGH)
-            t.sleep(freq)
-            GPIO.output(self.LED, GPIO.LOW)
-            t.sleep(freq)
+    
+    
+
