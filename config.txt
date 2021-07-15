@@ -1,0 +1,14 @@
+### Time between pictures in s
+interval=300
+
+### Weekdays for shooting 0:Monday, 1:Tuesday, 2:Wednesday...
+shooting_days=0,1,2,4,5
+
+### Times to shoot (format: HH:MM:SS)
+start_time=07:00:00
+stop_time=19:00:00
+
+### Path to save 
+save_path=Pictures
+
+### 

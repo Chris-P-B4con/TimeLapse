@@ -1,0 +1,134 @@
+2021/07/15 19:25:46 Failed to create file system for "onedrive:TimeLapse/Pictures": didn't find section in config file
+2021/07/15 19:27:26 INFO  : One drive root 'Test/Pictures': Waiting for checks to finish
+2021/07/15 19:27:26 INFO  : One drive root 'Test/Pictures': Waiting for transfers to finish
+2021/07/15 19:27:26 INFO  : 
+Transferred:   	         0 / 0 Bytes, -, 0 Bytes/s, ETA -
+Errors:                 0
+Checks:                 0 / 0, -
+Transferred:            0 / 0, -
+Elapsed time:        1.4s
+
+2021/07/15 19:27:57 INFO  : One drive root 'Test/Pictures': Waiting for checks to finish
+2021/07/15 19:27:57 INFO  : One drive root 'Test/Pictures': Waiting for transfers to finish
+2021/07/15 19:27:57 INFO  : 
+Transferred:   	         0 / 0 Bytes, -, 0 Bytes/s, ETA -
+Errors:                 0
+Checks:                 0 / 0, -
+Transferred:            0 / 0, -
+Elapsed time:        1.7s
+
+2021/07/15 19:28:55 INFO  : One drive root 'Test/Pictures': Waiting for checks to finish
+2021/07/15 19:28:55 INFO  : One drive root 'Test/Pictures': Waiting for transfers to finish
+2021/07/15 19:28:55 INFO  : 
+Transferred:   	         0 / 0 Bytes, -, 0 Bytes/s, ETA -
+Errors:                 0
+Checks:                 0 / 0, -
+Transferred:            0 / 0, -
+Elapsed time:        1.5s
+
+2021/07/15 19:30:08 INFO  : One drive root 'Test/Pictures': Waiting for checks to finish
+2021/07/15 19:30:08 INFO  : One drive root 'Test/Pictures': Waiting for transfers to finish
+2021/07/15 19:30:08 INFO  : 
+Transferred:   	         0 / 0 Bytes, -, 0 Bytes/s, ETA -
+Errors:                 0
+Checks:                 0 / 0, -
+Transferred:            0 / 0, -
+Elapsed time:        1.4s
+
+2021/07/15 19:31:35 INFO  : One drive root 'Test/Pictures': Waiting for checks to finish
+2021/07/15 19:31:35 INFO  : One drive root 'Test/Pictures': Waiting for transfers to finish
+2021/07/15 19:31:35 INFO  : 
+Transferred:   	         0 / 0 Bytes, -, 0 Bytes/s, ETA -
+Errors:                 0
+Checks:                 0 / 0, -
+Transferred:            0 / 0, -
+Elapsed time:        1.5s
+
+2021/07/15 19:32:46 INFO  : One drive root 'Test/Pictures': Waiting for checks to finish
+2021/07/15 19:32:46 INFO  : One drive root 'Test/Pictures': Waiting for transfers to finish
+2021/07/15 19:32:46 INFO  : 
+Transferred:   	         0 / 0 Bytes, -, 0 Bytes/s, ETA -
+Errors:                 0
+Checks:                 0 / 0, -
+Transferred:            0 / 0, -
+Elapsed time:          2s
+
+2021/07/15 19:33:08 INFO  : One drive root 'Test/Pictures': Waiting for checks to finish
+2021/07/15 19:33:08 INFO  : One drive root 'Test/Pictures': Waiting for transfers to finish
+2021/07/15 19:33:08 INFO  : 
+Transferred:   	         0 / 0 Bytes, -, 0 Bytes/s, ETA -
+Errors:                 0
+Checks:                 0 / 0, -
+Transferred:            0 / 0, -
+Elapsed time:        1.7s
+
+2021/07/15 19:38:41 INFO  : One drive root 'Test/Pictures': Waiting for checks to finish
+2021/07/15 19:38:41 INFO  : One drive root 'Test/Pictures': Waiting for transfers to finish
+2021/07/15 19:40:04 INFO  : One drive root 'Test/Pictures': Waiting for checks to finish
+2021/07/15 19:40:04 INFO  : One drive root 'Test/Pictures': Waiting for transfers to finish
+2021/07/15 19:40:56 INFO  : Manual_15-Jul-2021-(19-37-54).jpg: Copied (new)
+2021/07/15 19:41:00 INFO  : Manual_15-Jul-2021-(19-36-45).jpg: Copied (new)
+2021/07/15 19:41:00 INFO  : 
+Transferred:   	    8.902M / 8.902 MBytes, 100%, 157.325 kBytes/s, ETA 0s
+Errors:                 0
+Checks:                 0 / 0, -
+Transferred:            2 / 2, 100%
+Elapsed time:       57.9s
+
+2021/07/15 19:43:20 INFO  : One drive root 'Test/Pictures': Waiting for checks to finish
+2021/07/15 19:43:20 INFO  : One drive root 'Test/Pictures': Waiting for transfers to finish
+2021/07/15 19:49:06 INFO  : One drive root 'Test/Pictures': Waiting for checks to finish
+2021/07/15 19:49:06 INFO  : One drive root 'Test/Pictures': Waiting for transfers to finish
+2021/07/15 19:50:05 INFO  : 
+Transferred:   	   10.703M / 26.605 MBytes, 40%, 178.676 kBytes/s, ETA 1m31s
+Errors:                 0
+Checks:                 3 / 3, 100%
+Transferred:            0 / 6, 0%
+Elapsed time:      1m1.3s
+Transferring:
+ *                    15-Jul-2021-(19-41-56).jpg: 60% /4.351M, 40.512k/s, 43s
+ *                    15-Jul-2021-(19-42-14).jpg: 60% /4.438M, 40.667k/s, 43s
+ *             Manual_15-Jul-2021-(19-43-34).jpg: 57% /4.427M, 41.649k/s, 46s
+ *             Manual_15-Jul-2021-(19-44-28).jpg: 64% /4.476M, 41.149k/s, 39s
+
+2021/07/15 19:50:53 INFO  : Manual_15-Jul-2021-(19-44-28).jpg: Copied (new)
+2021/07/15 19:50:54 INFO  : 15-Jul-2021-(19-41-56).jpg: Copied (new)
+2021/07/15 19:50:54 INFO  : 15-Jul-2021-(19-42-14).jpg: Copied (new)
+2021/07/15 19:50:54 INFO  : Manual_15-Jul-2021-(19-43-34).jpg: Copied (new)
+2021/07/15 19:51:05 INFO  : 
+Transferred:   	   24.407M / 26.605 MBytes, 92%, 205.971 kBytes/s, ETA 10s
+Errors:                 0
+Checks:                 3 / 3, 100%
+Transferred:            4 / 6, 67%
+Elapsed time:      2m1.3s
+Transferring:
+ *             Manual_15-Jul-2021-(19-45-43).jpg: 97% /4.456M, 379.271k/s, 0s
+ *             Manual_15-Jul-2021-(19-46-48).jpg: 53% /4.457M, 222.172k/s, 9s
+
+2021/07/15 19:51:09 INFO  : Manual_15-Jul-2021-(19-45-43).jpg: Copied (new)
+2021/07/15 19:51:11 INFO  : Manual_15-Jul-2021-(19-46-48).jpg: Copied (new)
+2021/07/15 19:51:11 INFO  : 
+Transferred:   	   26.605M / 26.605 MBytes, 100%, 213.847 kBytes/s, ETA 0s
+Errors:                 0
+Checks:                 3 / 3, 100%
+Transferred:            6 / 6, 100%
+Elapsed time:      2m7.3s
+
+2021/07/15 19:52:23 INFO  : One drive root 'Test/Pictures': Waiting for checks to finish
+2021/07/15 19:52:23 INFO  : One drive root 'Test/Pictures': Waiting for transfers to finish
+2021/07/15 19:52:23 INFO  : 
+Transferred:   	         0 / 0 Bytes, -, 0 Bytes/s, ETA -
+Errors:                 0
+Checks:                 9 / 9, 100%
+Transferred:            0 / 0, -
+Elapsed time:        2.2s
+
+2021/07/15 19:54:25 INFO  : One drive root 'Test/Pictures': Waiting for checks to finish
+2021/07/15 19:54:25 INFO  : One drive root 'Test/Pictures': Waiting for transfers to finish
+2021/07/15 19:54:25 INFO  : 
+Transferred:   	         0 / 0 Bytes, -, 0 Bytes/s, ETA -
+Errors:                 0
+Checks:                 9 / 9, 100%
+Transferred:            0 / 0, -
+Elapsed time:        1.3s
+

@@ -4,11 +4,12 @@ import datetime
 import time as t
 import subprocess
 import os
+import logging
 from pathlib import Path
 
 class TimeLapseCam():
 
-    def __init__(self, LED, resolution, interval, shooting_days, start_time, stop_time, path = "Pictures", logging=True):
+    def __init__(self, LED, resolution, interval, shooting_days, start_time, stop_time, path = "Pictures", logg=True):
 
         self.resolution = resolution
         self.shooting_days = shooting_days
@@ -20,15 +21,12 @@ class TimeLapseCam():
         
         # Ensure folder for Pictures exists and is empty
         print("Creating save space...")
-        if not os.path.exists("Pictures"):
-            Path("Pictures").mkdir(parents=True)
+        if not os.path.exists(path):
+            Path(path).mkdir(parents=True)
         print("Done.")
 
-        # Open Camera
-        self.setup_camera()
-
         # Create logging instance
-        if logging == True:
+        if logg == True:
             self.logger = logging.getLogger("TimeLapse")
             fh = logging.FileHandler("errors.txt")
             formatter = logging.Formatter('%(asctime)s = %(name)s - %(levelname)s - %(message)s')
@@ -39,15 +37,16 @@ class TimeLapseCam():
         start = t.time()
         with PiCamera() as camera:
             camera.resolution = self.resolution
-            cur_time_str = datetime.now().strftime("%d-%b-%Y-(%H-%M-%S)")
+            cur_time_str = datetime.datetime.now().strftime("%d-%b-%Y-(%H-%M-%S)")
             GPIO.output(self.LED, GPIO.HIGH)
             camera.start_preview()
             t.sleep(2)
             camera.capture("Pictures/{}.jpg".format(cur_time_str)) \
-                if channel != '' else camera.capture("Pictures/Manual_{}.jpg".format(cur_time_str))
+                if channel == '' else camera.capture("Pictures/Manual_{}.jpg".format(cur_time_str))
             camera.stop_preview()
             print("Picture taken at {}".format(cur_time_str))
-            self.sync("single", cur_time_str)
+            print(cur_time_str + ".jpg")
+	    self.sync("single",self.save_path + "/" + cur_time_str + ".jpg")
             lost_time = t.time() - start 
             return lost_time
         
