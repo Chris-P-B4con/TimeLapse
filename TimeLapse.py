@@ -50,7 +50,7 @@ if __name__ == "__main__":
             synced = False
             GPIO.output(camera.LED, GPIO.HIGH)
             lost_time = camera.take_picture()
-            utils.blink_LED(1, int(camera.interval-lost_time/2))
+            utils.blink_LED(1, int(camera.interval-lost_time/2), camera.LED)
             GPIO.output(camera.LED, GPIO.LOW)
             utils.write_to_log("Failed to take intervall picture.")
 
