@@ -55,7 +55,7 @@ if __name__ == "__main__":
             utils.write_to_log("Failed to take intervall picture.")
 
         # Weekly Upload and deleting of files on Sunday
-        elif cur_weekday not in camera.shooting_days:
+        elif str(cur_weekday) not in camera.shooting_days:
             utils.write_to_log("Going to sleep for the day.")
             camera.sync("weekly")
             sleep(24*60*60) #24 Hours (should wake up at 5am)

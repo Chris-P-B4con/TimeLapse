@@ -1,6 +1,6 @@
 import urllib
 import subprocess
-import Rpi.GPIO as GPIO
+import RPi.GPIO as GPIO
 import time as t
 
 def time_in_range(start, end, current):
@@ -52,4 +52,4 @@ def blink_LED(freq, count, LED):
 
 def write_to_log(text, log_file='log.txt'):
     with open(log_file, "a") as f:
-        f.write(text)
+        f.write(text + "\n")
