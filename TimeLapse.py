@@ -42,7 +42,7 @@ if __name__ == "__main__":
     utils.write_to_log("==========================")
     utils.write_to_log("Starting run at {}".format(datetime.now().strftime("%d-%b-%Y (%H:%M:%S)")))
     camera, cur_weekday, cur_time = setup()
-    synced = False
+    synced = True
 
     # Start main loop
     while True:
@@ -75,4 +75,3 @@ if __name__ == "__main__":
 
         # Update weekday and current time
         cur_weekday, cur_time = date.today().weekday(), datetime.now().time()
-
