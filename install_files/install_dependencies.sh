@@ -1,13 +1,10 @@
 
 echo "Installing Dependencies..."
+sudo apt-get -qq update && sudo apt-get -qq upgrade
 pip install pathlib
 sudo apt-get -qq install -y git python-picamera
 sudo apt-get -qq install -y screen
 sudo apt-get -qq install -y rclone
-
-echo "Getting source code..."
-cd ~
-git clone https://github.com/Chris-P-B4con/TimeLapse.git
 
 echo "Configuring automatic script run on startup"
 cd TimeLapse

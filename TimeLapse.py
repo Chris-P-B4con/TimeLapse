@@ -25,7 +25,7 @@ def setup():
     GPIO.setup(BUTTON_PREVIEW, GPIO.IN, pull_up_down=GPIO.PUD_UP)
     GPIO.setup(LED_INET, GPIO.OUT)
     GPIO.setup(BUTTON_SYNC, GPIO.IN, pull_up_down=GPIO.PUD_UP)
-    GPIO.add_event_detect(BUTTON_SYNC, GPIO.FALLING, callback = utils.sync_script, bouncetime=100)
+    GPIO.add_event_detect(BUTTON_SYNC, GPIO.FALLING, callback = camera.preview, bouncetime=100)
     GPIO.add_event_detect(BUTTON_PREVIEW, GPIO.FALLING, callback = camera.take_picture, bouncetime=100)
 
     #Ensure internet connection
@@ -35,7 +35,7 @@ def setup():
     utils.write_to_log("Done.")
 
     #Runtime config
-    cur_time = datetime.now().time()
+    cur_time = cur_time = datetime.now().time()
     cur_weekday = date.today().weekday()
     
 
@@ -66,7 +66,7 @@ if __name__ == "__main__":
         else:
             if cur_time > camera.stop_time:
                 synced = True
-                utils.write_to_log("Updating time lapse parameters and going to sleep for {} hours.".format(camera.sleep_time))
+                utils.write_to_log("Updating time lapse parameters and going to sleep for {} hours.".format(camera.sleep_time/60/60))
                 camera.sync("daily")
                 params = utils.read_config()
                 camera.update_config(params)

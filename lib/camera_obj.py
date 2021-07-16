@@ -53,7 +53,11 @@ class TimeLapseCam():
             lost_time = t.time() - start 
             return lost_time
         
-    
+    def preview(self, channel):
+        with PiCamera() as camera:
+            camera.resolution = self.resolution
+            camera.start_prevew()
+            t.sleep(120)
     def sync(self, subscript, file_name = ""):
         if subscript == "single" and file_name != "":
             try:
