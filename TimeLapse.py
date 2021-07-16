@@ -41,7 +41,7 @@ def setup():
 
 if __name__ == "__main__":
     
-    utils.write_to_log("\n\n==========================")
+    utils.write_to_log("======================================", False)
     utils.write_to_log("Starting run at {}".format(datetime.now().strftime("%d-%b-%Y (%H:%M:%S)")))
     camera, cur_weekday, cur_time = setup()
     synced = True
