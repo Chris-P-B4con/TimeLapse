@@ -35,11 +35,14 @@ def setup():
     utils.write_to_log("Done.")
 
     #Runtime config
-    cur_time = ""
+    cur_time = cur_time = datetime.now().time()
     if os.path.exists(params["save_path"]):
         pictures = glob.glob(os.path.join(params["save_path"],'*.{}'.format(".jpg")))
         temp = pictures[-1][-13:-2].split("-")
-        cur_time = datetime.time(temp[0], temp[1], temp[2])
+        temp = datetime.time(temp[0], temp[1], temp[2])
+        if cur_time.time()-temp.time():
+            print(True)
+            print(cur_time.time()-temp.time())
         print(cur_time)
         print(temp)
         print(pictures[-1])
