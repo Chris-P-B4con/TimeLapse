@@ -13,8 +13,10 @@ LED_INET = 23
 def setup():
    
     utils.write_to_log("Reading in Config and setting up camera...")
-    interval, shooting_days, start_time, stop_time = utils.read_config()
-    camera = TimeLapseCam(LED_INET, (3280,2464), interval, shooting_days, start_time, stop_time)
+    params = utils.read_config()
+    params["resolution"] = (3280,2464)
+    params["LED"] = LED_INET
+    camera = TimeLapseCam(params)
     utils.write_to_log("Done.")
 
     # Configure RPi GPIOs
@@ -39,7 +41,7 @@ def setup():
 
 if __name__ == "__main__":
     
-    utils.write_to_log("==========================")
+    utils.write_to_log("\n\n==========================")
     utils.write_to_log("Starting run at {}".format(datetime.now().strftime("%d-%b-%Y (%H:%M:%S)")))
     camera, cur_weekday, cur_time = setup()
     synced = True
@@ -52,7 +54,6 @@ if __name__ == "__main__":
             lost_time = camera.take_picture()
             utils.blink_LED(1, int(camera.interval-lost_time/2), camera.LED)
             GPIO.output(camera.LED, GPIO.LOW)
-            utils.write_to_log("Failed to take intervall picture.")
 
         # Weekly Upload and deleting of files on Sunday
         elif str(cur_weekday) not in camera.shooting_days:
@@ -61,17 +62,17 @@ if __name__ == "__main__":
             sleep(24*60*60) #24 Hours (should wake up at 5am)
 
         else:
-            if not synced:
+            if cur_time > camera.stop_time:
                 synced = True
+                utils.write_to_log("Updating time lapse parameters and going to sleep for {} hours.".format(camera.sleep_time))
                 camera.sync("daily")
-                utils.write_to_log("Updating shooting parameters.")
-                interval, shooting_days, start_time, stop_time = utils.read_config()
-                utils.write_to_log("Going into sleep for 10 hours.")
+                params = utils.read_config()
+                camera.update_config(params)
                 GPIO.output(LED_INET, GPIO.LOW)
-                sleep(60*60*10)
+                sleep(camera.sleep_time)
             else:
                 utils.write_to_log("Not time to wake yet. Sleeping for 10 more minutes.")
-                sleep(600)
+                sleep(camera.sleep_time/60)
 
         # Update weekday and current time
         cur_weekday, cur_time = date.today().weekday(), datetime.now().time()

@@ -2,7 +2,7 @@
 interval=300
 
 ### Weekdays for shooting 0:Monday, 1:Tuesday, 2:Wednesday...
-shooting_days=0,1,2,4,5
+shooting_days=0,1,2,3,4,5
 
 ### Times to shoot (format: HH:MM:SS)
 start_time=07:00:00

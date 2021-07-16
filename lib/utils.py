@@ -9,26 +9,30 @@ def time_in_range(start, end, current):
 
 def read_config():
     f = open("config.txt", "r")
+    params = {}
     for line in f:
         if "interval" in line:
             temp = line.split("=")
-            interval = int(temp[-1])
+            params['interval'] = int(temp[-1])
         elif "shooting_days" in line:
             temp = line.split("=")
-            shooting_days = temp[-1].split(",")
-            shooting_days[-1] = shooting_days[-1].rstrip("\n")
+            params["shooting_days"] = temp[-1].split(",")
+            params["shooting_days"][-1] = params["shooting_days"][-1].rstrip("\n")
         elif "start_time" in line:
             temp = line.split("=")
-            start_time = temp[-1].split(":")
-            start_time[-1] = start_time[-1].rstrip("\n")
+            params["start_time"] = temp[-1].split(":")
+            params["start_time"][-1] = params["start_time"][-1].rstrip("\n")
         elif "stop_time" in line:
             temp = line.split("=")
-            stop_time = temp[-1].split(":")
-            stop_time[-1] = stop_time[-1].rstrip("\n")
+            params["stop_time"] = temp[-1].split(":")
+            params["stop_time"][-1] = params["stop_time"][-1].rstrip("\n")
+        elif "save_path" in line:
+            temp = line.split("=")
+            params["save_path"] = temp[-1].rstrip("\n")
         else:
             continue
     f.close()
-    return (interval, shooting_days, start_time, stop_time)
+    return params
 
 def connect(host="http://google.com"):
     try:
@@ -52,6 +56,6 @@ def blink_LED(freq, count, LED):
         t.sleep(freq)
 
 def write_to_log(text, log_file='log.txt'):
-    cur_time_str = datetime.datetime.now().strftime("%d-%b-%Y %H:%M:%S)")
+    cur_time_str = datetime.datetime.now().strftime("%d-%b-%Y %H:%M:%S")
     with open(log_file, "a") as f:
         f.write(cur_time_str + ": " + text + "\n")

@@ -11,15 +11,16 @@ from lib.utils import write_to_log
 
 class TimeLapseCam():
 
-    def __init__(self, LED, resolution, interval, shooting_days, start_time, stop_time, path = "Pictures", logg=True):
+    def __init__(self, params, path = "Pictures", logg=True):
 
-        self.resolution = resolution
-        self.shooting_days = shooting_days
-        self.start_time = datetime.time(int(start_time[0]), int(start_time[1]), int(start_time[2]))
-        self.stop_time = datetime.time(int(stop_time[0]), int(stop_time[1]), int(stop_time[2]))
-        self.interval = interval
-        self.LED = LED
+        self.resolution = params.resolution
+        self.shooting_days = params.shooting_days
+        self.start_time = datetime.time(int(params.start_time[0]), int(params.start_time[1]), int(params.start_time[2]))
+        self.stop_time = datetime.time(int(params.stop_time[0]), int(params.stop_time[1]), int(params.stop_time[2]))
+        self.interval = params.interval
+        self.LED = params.LED
         self.save_path = path
+        self.sleep_time = 10*60*60
         
         # Ensure folder for Pictures exists and is empty
         write_to_log("Creating save space...")
@@ -63,7 +64,6 @@ class TimeLapseCam():
         elif subscript == "daily":
             try:
                 subprocess.call(['sh','sync_scripts/sync_daily.sh', '>>','log.txt'])
-                self.update_config(read_config())
             except Exception as e:
                 self.logger.exception(e)
                 write_to_log("Something went wrong during daily upload.")
@@ -78,15 +78,15 @@ class TimeLapseCam():
         else:
             write_to_log("Subscript not found. No uploading")
 
-    def update_config(self, interval="", shooting_days="", start_time="",  stop_time=""):
-        if interval != "":
-            self.interval = interval
-        if start_time != "":
-            self.start_time = start_time
-        if stop_time != "":
-            self.stop_time = stop_time
-        if shooting_days != "":
-            self.shooting_days = shooting_days
+    def update_config(self, params):
+        if params.interval != "":
+            self.interval = params.interval
+        if params.start_time != "":
+            self.start_time = params.start_time
+        if params.stop_time != "":
+            self.stop_time = params.stop_time
+        if params.shooting_days != "":
+            self.shooting_days = params.shooting_days
             
     
     
