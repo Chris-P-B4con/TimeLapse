@@ -37,7 +37,7 @@ def setup():
     #Runtime config
     cur_time = cur_time = datetime.now().time()
     if os.path.exists(params["save_path"]):
-        pictures = glob.glob(os.path.join(params["save_path"],'*.{}'.format(".jpg")))
+        pictures = glob.glob(os.path.join(params["save_path"],'*.{}'.format("jpg")))
         print(cur_time)
         print(pictures[-1])
         temp = pictures[-1][-13:-2].split("-")
