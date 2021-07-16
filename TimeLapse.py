@@ -52,7 +52,7 @@ if __name__ == "__main__":
             synced = False
             GPIO.output(camera.LED, GPIO.HIGH)
             lost_time = camera.take_picture()
-            utils.blink_LED(1, int(camera.interval-lost_time/2), camera.LED)
+            utils.blink_LED(1, int((camera.interval-lost_time)/2), camera.LED)
             GPIO.output(camera.LED, GPIO.LOW)
 
         # Weekly Upload and deleting of files on Sunday
@@ -72,7 +72,7 @@ if __name__ == "__main__":
                 sleep(camera.sleep_time)
             else:
                 utils.write_to_log("Not time to wake yet. Sleeping for 10 more minutes.")
-                sleep(camera.sleep_time/60)
+                utils.blink_LED(2, int(camera.sleep_time/120), camera.LED)
 
         # Update weekday and current time
         cur_weekday, cur_time = date.today().weekday(), datetime.now().time()

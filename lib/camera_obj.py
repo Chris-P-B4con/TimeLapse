@@ -19,14 +19,14 @@ class TimeLapseCam():
         self.stop_time = datetime.time(int(params["stop_time"][0]), int(params["stop_time"][1]), int(params["stop_time"][2]))
         self.interval = params["interval"]
         self.LED = params["LED"]
-        self.save_path = path
+        self.save_path = path if params["save_folder"] == "" else params["save_folder"] 
         self.sleep_time = 10*60*60
         self.onedrive = params["onedrive_folder"]
         
         # Ensure folder for Pictures exists and is empty
         write_to_log("Creating save space...")
-        if not os.path.exists(path):
-            Path(path).mkdir(parents=True)
+        if not os.path.exists(self.path):
+            Path(self.path).mkdir(parents=True)
         write_to_log("Done.")
 
         # Create logging instance
@@ -65,6 +65,8 @@ class TimeLapseCam():
         elif subscript == "daily":
             try:
                 subprocess.call(['sh','sync_scripts/sync_daily.sh', str(self.onedrive), '>>','log.txt'])
+                params = read_config()
+                self.update_config(params)
             except Exception as e:
                 self.logger.exception(e)
                 write_to_log("Something went wrong during daily upload.")
