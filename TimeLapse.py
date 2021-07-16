@@ -35,20 +35,7 @@ def setup():
     utils.write_to_log("Done.")
 
     #Runtime config
-    cur_time = cur_time = datetime.now().time()
-    if os.path.exists(params["save_path"]):
-        pictures = glob.glob(os.path.join(params["save_path"],'*.{}'.format("jpg")))
-        print(cur_time)
-        print(pictures[-1])
-        temp = pictures[-1][-13:-6].split("-")
-        print(temp)
-        temp = time(int(temp[0]), int(temp[1]), int(temp[2]))
-        if cur_time.time()-temp.time():
-            print(True)
-            print(cur_time.time()-temp.time())
-        
-    else:
-        cur_time = datetime.now().time()
+    cur_time = datetime.now().time()
     cur_weekday = date.today().weekday()
     
 
