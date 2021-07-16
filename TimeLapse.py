@@ -1,4 +1,5 @@
 import RPi.GPIO as GPIO
+import os, glob
 
 from lib import utils
 from lib.camera_obj import TimeLapseCam
@@ -34,8 +35,18 @@ def setup():
     utils.write_to_log("Done.")
 
     #Runtime config
+    cur_time = ""
+    if os.path.exists(params["save_path"]):
+        pictures = glob.glob(os.path.join(params["save_path"],'*.{}'.format(".jpg")))
+        temp = pictures[-1][-13:-2].split("-")
+        cur_time = datetime.time(temp[0], temp[1], temp[2])
+        print(cur_time)
+        print(temp)
+        print(pictures[-1])
+    else:
+        cur_time = datetime.now().time()
     cur_weekday = date.today().weekday()
-    cur_time = datetime.now().time()
+    
 
     return camera, cur_weekday, cur_time
 
