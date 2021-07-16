@@ -59,7 +59,7 @@ def blink_LED(freq, count, LED):
         GPIO.output(LED, GPIO.LOW)
         t.sleep(freq)
 
-def write_to_log(text, log_file='log.txt', t_bool = True):
+def write_to_log(text, t_bool = True, log_file='log.txt'):
     cur_time_str = datetime.datetime.now().strftime("%d-%b-%Y %H:%M:%S")
     with open(log_file, "a") as f:
         f.write(cur_time_str + ": " + text + "\n") if t_bool else \

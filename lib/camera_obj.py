@@ -17,7 +17,7 @@ class TimeLapseCam():
         self.shooting_days = params["shooting_days"]
         self.start_time = datetime.time(int(params["start_time"][0]), int(params["start_time"][1]), int(params["start_time"][2]))
         self.stop_time = datetime.time(int(params["stop_time"][0]), int(params["stop_time"][1]), int(params["stop_time"][2]))
-        self.interval = params.["interval"]
+        self.interval = params["interval"]
         self.LED = params["LED"]
         self.save_path = path
         self.sleep_time = 10*60*60
