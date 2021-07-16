@@ -19,7 +19,7 @@ class TimeLapseCam():
         self.stop_time = datetime.time(int(params["stop_time"][0]), int(params["stop_time"][1]), int(params["stop_time"][2]))
         self.interval = params["interval"]
         self.LED = params["LED"]
-        self.save_path = path if params["save_folder"] == "" else params["save_folder"] 
+        self.save_path = path if params["save_path"] == "" else params["save_path"] 
         self.sleep_time = 10*60*60
         self.onedrive = params["onedrive_folder"]
         

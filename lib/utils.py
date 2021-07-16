@@ -10,7 +10,13 @@ def time_in_range(start, end, current):
 
 def read_config():
     f = open("config.txt", "r")
-    params = {}
+    params = {"interval": "",
+    "shooting_days": "",
+    "start_time": "",
+    "stop_time": "",
+    "save_path": "",
+    "onedrive_folder":""}
+    
     for line in f:
         if "interval" in line:
             temp = line.split("=")
