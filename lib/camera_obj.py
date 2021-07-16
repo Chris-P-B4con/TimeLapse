@@ -25,8 +25,8 @@ class TimeLapseCam():
         
         # Ensure folder for Pictures exists and is empty
         write_to_log("Creating save space...")
-        if not os.path.exists(self.path):
-            Path(self.path).mkdir(parents=True)
+        if not os.path.exists(self.save_path):
+            Path(self.save_path).mkdir(parents=True)
         write_to_log("Done.")
 
         # Create logging instance
