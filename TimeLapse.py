@@ -38,14 +38,15 @@ def setup():
     cur_time = cur_time = datetime.now().time()
     if os.path.exists(params["save_path"]):
         pictures = glob.glob(os.path.join(params["save_path"],'*.{}'.format(".jpg")))
+        print(cur_time)
+        print(pictures[-1])
         temp = pictures[-1][-13:-2].split("-")
+        print(temp)
         temp = datetime.time(temp[0], temp[1], temp[2])
         if cur_time.time()-temp.time():
             print(True)
             print(cur_time.time()-temp.time())
-        print(cur_time)
-        print(temp)
-        print(pictures[-1])
+        
     else:
         cur_time = datetime.now().time()
     cur_weekday = date.today().weekday()
