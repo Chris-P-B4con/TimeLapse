@@ -4,7 +4,7 @@ import os, glob
 from lib import utils
 from lib.camera_obj import TimeLapseCam
 from time import sleep
-from datetime import datetime, date
+from datetime import datetime, date, time
 
 # GPIO PIN MAPPING
 BUTTON_PREVIEW = 16
@@ -42,7 +42,7 @@ def setup():
         print(pictures[-1])
         temp = pictures[-1][-13:-6].split("-")
         print(temp)
-        temp = datetime.time(int(temp[0]), int(temp[1]), int(temp[2]))
+        temp = time(int(temp[0]), int(temp[1]), int(temp[2]))
         if cur_time.time()-temp.time():
             print(True)
             print(cur_time.time()-temp.time())
