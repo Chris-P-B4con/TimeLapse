@@ -3,9 +3,10 @@ Description=Start the Pi Timelapse script.
 After=network.target
 
 [Service]
-Type=simple
-ExecStart=/usr/bin/python /home/pi/TimeLapse/TimeLapse.py
+ExecStart=sudo /usr/bin/python /home/pi/TimeLapse/TimeLapse.py
 RemainAfterExit=true
+Restart=always
+WorkingDirectory=/home/pi/TimeLapse
 ExecStop=/usr/bin/pkill -f TimeLapse.py
 StandardOutput=journal
 StandardError=journal
