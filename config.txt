@@ -11,4 +11,5 @@ stop_time=19:00:00
 ### Path to save 
 save_path=Pictures
 
-### 
+### OneDrive Location
+onedrive_folder=onedrive:Test

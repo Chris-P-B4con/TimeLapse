@@ -21,6 +21,7 @@ class TimeLapseCam():
         self.LED = params.LED
         self.save_path = path
         self.sleep_time = 10*60*60
+        self.onedrive = params.onedrive_folder
         
         # Ensure folder for Pictures exists and is empty
         write_to_log("Creating save space...")
@@ -56,21 +57,21 @@ class TimeLapseCam():
     def sync(self, subscript, file_name = ""):
         if subscript == "single" and file_name != "":
             try:
-               subprocess.call(['sh', 'sync_scripts/sync_single.sh', str(file_name)])
+               subprocess.call(['sh', 'sync_scripts/sync_single.sh', str(file_name), str(self.onedrive)])
             except Exception as e:
                 self.logger.exception(e)
                 write_to_log("Something went wrong during single upload.")
 
         elif subscript == "daily":
             try:
-                subprocess.call(['sh','sync_scripts/sync_daily.sh', '>>','log.txt'])
+                subprocess.call(['sh','sync_scripts/sync_daily.sh', str(self.onedrive), '>>','log.txt'])
             except Exception as e:
                 self.logger.exception(e)
                 write_to_log("Something went wrong during daily upload.")
                 
         elif subscript == "weekly":
             try:
-                subprocess.call(['sh', 'sync_scripts/sync_weekly.sh', '>>', 'log.txt'])
+                subprocess.call(['sh', 'sync_scripts/sync_weekly.sh', str(self.onedrive), '>>', 'log.txt'])
             except Exception as e:
                 self.logger.exception(e)
                 write_to_log("Something went wrong during weekly upload.")

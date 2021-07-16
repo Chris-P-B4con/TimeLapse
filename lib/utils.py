@@ -29,8 +29,12 @@ def read_config():
         elif "save_path" in line:
             temp = line.split("=")
             params["save_path"] = temp[-1].rstrip("\n")
+        elif "onedrive_folder" in line:
+            temp = line.split("=")
+            params["onedrive_folder"] = temp[-1].rstrip("\n")
         else:
             continue
+
     f.close()
     return params
 
