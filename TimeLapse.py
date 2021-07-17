@@ -35,14 +35,16 @@ def setup():
     utils.write_to_log("Done.")
 
     #Runtime config
+    utils.write_to_log("Checking last pictures for timestamp...")
     if os.path.exists(camera.save_path):
         cur_time = datetime.now()
         pictures = glob.glob(os.path.join("Pictures",'*.{}'.format('jpg')))
         pictures = [datetime.strptime(i, "Pictures/%d-%b-%Y-(%H-%M-%S).jpg") for i in pictures]
         pictures = sorted(pictures, key= lambda x: (cur_time-x).total_seconds())
         last_picture = pictures[0]
-        if diff := (cur_time-last_picture).total_seconds()/60 < 5:
-            sleep(300 - diff * 60)
+        if (cur_time-last_picture).total_seconds() < camera.interval:
+	    utils.write_to_log("Last picture was {}. sleeping for {}".format(last_picture, camera.interval-(cur_time-last_picture).total_seconds()))
+            sleep(camera.interval - (cur_time-last_picture).total_seconds())
     cur_time = datetime.now().time()
     cur_weekday = date.today().weekday()
     

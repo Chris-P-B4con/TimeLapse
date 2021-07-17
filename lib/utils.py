@@ -15,7 +15,8 @@ def read_config():
     "start_time": "",
     "stop_time": "",
     "save_path": "",
-    "onedrive_folder":""}
+    "onedrive_folder":"",
+    "sleep_time": ""}
     
     for line in f:
         if "interval" in line:
@@ -39,7 +40,10 @@ def read_config():
         elif "onedrive_folder" in line:
             temp = line.split("=")
             params["onedrive_folder"] = temp[-1].rstrip("\n")
-        else:
+	elif "sleep_time" in line:
+	    temp = line.split("=")
+	    params["sleep_time"] = temp[-1]
+	else:
             continue
 
     f.close()

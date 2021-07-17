@@ -20,7 +20,7 @@ class TimeLapseCam():
         self.interval = params["interval"]
         self.LED = params["LED"]
         self.save_path = path if params["save_path"] == "" else params["save_path"] 
-        self.sleep_time = 10*60*60
+        self.sleep_time = int(params["sleep_time"]) *60*60
         self.onedrive = params["onedrive_folder"]
         
         # Ensure folder for Pictures exists and is empty
@@ -58,6 +58,7 @@ class TimeLapseCam():
             camera.resolution = self.resolution
             camera.start_prevew()
             t.sleep(120)
+
     def sync(self, subscript, file_name = ""):
         if subscript == "single" and file_name != "":
             try:
@@ -94,7 +95,10 @@ class TimeLapseCam():
             self.stop_time = params["stop_time"]
         if params["shooting_days"] != "":
             self.shooting_days = params["shooting_days"]
-            
+	if params["sleep_time"] != "":
+	    self.sleep_time = int(params["sleep_time"])*60*60
+	if params["onedrive_folder"] != "":
+	    self.onedrive = params["onedrive_folder"]
     
     
 

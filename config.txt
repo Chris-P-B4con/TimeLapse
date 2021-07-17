@@ -12,4 +12,7 @@ stop_time=19:00:00
 save_path=Pictures
 
 ### OneDrive Location
-onedrive_folder=onedrive:Test
+onedrive_folder=onedrive:TimeLapse
+
+### Sleep time in h
+sleep_time=10
