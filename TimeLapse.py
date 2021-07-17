@@ -72,7 +72,7 @@ if __name__ == "__main__":
             sleep(24*60*60) #24 Hours (should wake up at 5am)
 
         else:
-            if cur_time > camera.stop_time:
+            if not synced:
                 synced = True
                 utils.write_to_log("Updating time lapse parameters and going to sleep for {} hours.".format(camera.sleep_time/60/60))
                 camera.sync("daily")
@@ -82,7 +82,7 @@ if __name__ == "__main__":
                 sleep(camera.sleep_time)
             else:
                 utils.write_to_log("Not time to wake yet. Sleeping for 10 more minutes.")
-                utils.blink_LED(2, int(camera.sleep_time/120), camera.LED)
+                utils.blink_LED(2, int(camera.sleep_time/60), camera.LED)
 
         # Update weekday and current time
         cur_weekday, cur_time = date.today().weekday(), datetime.now().time()

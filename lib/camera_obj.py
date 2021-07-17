@@ -86,14 +86,14 @@ class TimeLapseCam():
             write_to_log("Subscript not found. No uploading")
 
     def update_config(self, params):
-        if params.interval != "":
-            self.interval = params.interval
-        if params.start_time != "":
-            self.start_time = params.start_time
-        if params.stop_time != "":
-            self.stop_time = params.stop_time
-        if params.shooting_days != "":
-            self.shooting_days = params.shooting_days
+        if params["interval"] != "":
+            self.interval = params["interval"]
+        if params["start_time"] != "":
+            self.start_time = params["start_time"]
+        if params["stop_time"] != "":
+            self.stop_time = params["stop_time"]
+        if params["shooting_days"] != "":
+            self.shooting_days = params["shooting_days"]
             
     
     
