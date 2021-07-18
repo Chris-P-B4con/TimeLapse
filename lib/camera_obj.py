@@ -20,7 +20,6 @@ class TimeLapseCam():
         self.interval = params["interval"]
         self.LED = params["LED"]
         self.save_path = path if params["save_path"] == "" else params["save_path"] 
-        self.sleep_time = int(params["sleep_time"]) *60*60
         self.onedrive = params["onedrive_folder"]
         
         # Ensure folder for Pictures exists and is empty
@@ -99,9 +98,11 @@ class TimeLapseCam():
         if params["interval"] != "":
             self.interval = params["interval"]
         if params["start_time"] != "":
-            self.start_time = params["start_time"]
+            self.start_time = \
+                datetime.time(int(params["start_time"][0]), int(params["start_time"][1]), int(params["start_time"][2]))
         if params["stop_time"] != "":
-            self.stop_time = params["stop_time"]
+            self.stop_time = \
+                datetime.time(int(params["stop_time"][0]), int(params["stop_time"][1]), int(params["stop_time"][2]))
         if params["shooting_days"] != "":
             self.shooting_days = params["shooting_days"]
         if params["onedrive_folder"] != "":

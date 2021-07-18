@@ -56,7 +56,7 @@ if __name__ == "__main__":
     utils.write_to_log("======================================", False)
     utils.write_to_log("Starting run at {}".format(datetime.now().strftime("%d-%b-%Y (%H:%M:%S)")))
     camera, cur_weekday, cur_time = setup()
-    synced = True
+    synced = False
 
     # Start main loop
     while True:
@@ -71,7 +71,7 @@ if __name__ == "__main__":
 
         # Weekly Upload and deleting of files on Sunday
         elif str(cur_weekday) not in camera.shooting_days:
-            utils.write_to_log("Going to sleep for the day.")
+            utils.write_to_log("Weekly update then going to sleep for the day.")
             camera.sync("weekly")
 
             # Calculate difference between now and next shooting time for sleep
@@ -85,7 +85,7 @@ if __name__ == "__main__":
             # Sync once after the day and sleep longer
             if not synced:
                 synced = True
-                utils.write_to_log("Updating time lapse parameters and going to sleep for {} hours.".format(camera.sleep_time/60/60))
+                utils.write_to_log("Updating time lapse parameters and going to sleep")
                 camera.sync("daily")
                 params = utils.read_config()
                 camera.update_config(params)
