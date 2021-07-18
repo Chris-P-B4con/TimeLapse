@@ -58,11 +58,14 @@ class TimeLapseCam():
             camera.resolution = self.resolution
             camera.start_prevew()
             t.sleep(120)
-
+            
     def sync(self, subscript, file_name = ""):
         if subscript == "single" and file_name != "":
             try:
-               subprocess.call(['sh', 'sync_scripts/sync_single.sh', str(file_name), str(self.onedrive)])
+               subprocess.call(['sh', 'sync_scripts/sync_single.sh', str(file_name), str(self.onedrive), str(self.save_path)]) \
+                   if "Manual" in file_name else \
+                       subprocess.call(['sh', 'sync_scripts/sync_single.sh', str(file_name), str(self.onedrive), "Manual"])
+                       
             except Exception as e:
                 self.logger.exception(e)
                 write_to_log("Something went wrong during single upload.")
@@ -95,10 +98,11 @@ class TimeLapseCam():
             self.stop_time = params["stop_time"]
         if params["shooting_days"] != "":
             self.shooting_days = params["shooting_days"]
-	if params["sleep_time"] != "":
-	    self.sleep_time = int(params["sleep_time"])*60*60
-	if params["onedrive_folder"] != "":
-	    self.onedrive = params["onedrive_folder"]
+        if params["onedrive_folder"] != "":
+            self.onedrive = params["onedrive_folder"]
+        if params["sleep_time"] != "":
+            self.sleep_time = params["sleep_time"]
+
     
     
 

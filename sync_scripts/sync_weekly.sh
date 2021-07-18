@@ -7,6 +7,7 @@ date '+%d-%b-%Y %H:%M:%S: Uploading files to OneDrive...' >> log.txt
 {
 	{
 		rclone copy -v /home/pi/TimeLapse/Pictures/ $1/Pictures  --log-file=log.txt 
+		rclone copy -v /home/pi/TimeLapse/Manual $1/Manual --log-file=log.txt
 	} && {
 		date '+%d-%b-%Y %H:%M:%S: Deleting local pictures...' >> log.txt
 		rm Pictures/*.jpg

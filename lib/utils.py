@@ -40,10 +40,10 @@ def read_config():
         elif "onedrive_folder" in line:
             temp = line.split("=")
             params["onedrive_folder"] = temp[-1].rstrip("\n")
-	elif "sleep_time" in line:
-	    temp = line.split("=")
-	    params["sleep_time"] = temp[-1]
-	else:
+        elif "sleep_time" in line:
+            temp = line.split("=")
+            params["sleep_time"] = temp[-1]
+        else:
             continue
 
     f.close()
