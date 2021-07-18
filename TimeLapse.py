@@ -36,7 +36,7 @@ def setup():
 
     #Runtime config
     utils.write_to_log("Checking last pictures for timestamp...")
-    if os.path.exists(camera.save_path):
+    if len(os.listdir(camera.save_path)) != 0:
         cur_time = datetime.now()
         pictures = glob.glob(os.path.join("Pictures",'*.{}'.format('jpg')))
         pictures = [datetime.strptime(i, "Pictures/%d-%b-%Y-(%H-%M-%S).jpg") for i in pictures]
@@ -99,7 +99,6 @@ if __name__ == "__main__":
             
             # Reduce sleeping interval to not miss start time
             else:
-                utils.write_to_log("Waking up...")
                 utils.blink_LED(2, int(15), camera.LED)
 
         # Update weekday and current time

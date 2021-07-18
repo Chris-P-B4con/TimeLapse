@@ -27,6 +27,8 @@ class TimeLapseCam():
         write_to_log("Creating save space...")
         if not os.path.exists(self.save_path):
             Path(self.save_path).mkdir(parents=True)
+        if not os.path.exists("Manual"):
+            Path("Manual").mkdir(parents=True)
         write_to_log("Done.")
 
         # Create logging instance
@@ -44,12 +46,16 @@ class TimeLapseCam():
             cur_time_str = datetime.datetime.now().strftime("%d-%b-%Y-(%H-%M-%S)")
             camera.start_preview()
             t.sleep(2)
-            camera.capture("Pictures/{}.jpg".format(cur_time_str)) \
-                if channel == '' else camera.capture("Manual/{}.jpg".format(cur_time_str))
-            camera.stop_preview()
-            write_to_log("Picture taken at {}".format(cur_time_str))
-            self.sync("single",self.save_path + "/" + cur_time_str + ".jpg") \
-                if channel == '' else self.sync("single", "Manual/" + cur_time_str + ".jpg")
+            if channel == '':
+                camera.capture("Pictures/{}.jpg".format(cur_time_str))
+                camera.stop_preview()
+                write_to_log("Picture taken at {}".format(cur_time_str))
+                self.sync("single",self.save_path + "/" + cur_time_str + ".jpg")
+            else:
+                camera.capture("Manual/{}.jpg".format(cur_time_str))
+                write_to_log("Snapshot taken at {}".format(cur_time_str))
+                self.sync("single", "Manual/" + cur_time_str + ".jpg")
+
             lost_time = t.time() - start 
             return lost_time
         
@@ -62,10 +68,10 @@ class TimeLapseCam():
     def sync(self, subscript, file_name = ""):
         if subscript == "single" and file_name != "":
             try:
-               subprocess.call(['sh', 'sync_scripts/sync_single.sh', str(file_name), str(self.onedrive), str(self.save_path)]) \
+               subprocess.call(['sh', 'sync_scripts/sync_single.sh', str(file_name), str(self.onedrive), "Manual"]) \
                    if "Manual" in file_name else \
-                       subprocess.call(['sh', 'sync_scripts/sync_single.sh', str(file_name), str(self.onedrive), "Manual"])
-                       
+                       subprocess.call(['sh', 'sync_scripts/sync_single.sh', str(file_name), str(self.onedrive), str(self.save_path)])
+
             except Exception as e:
                 self.logger.exception(e)
                 write_to_log("Something went wrong during single upload.")
