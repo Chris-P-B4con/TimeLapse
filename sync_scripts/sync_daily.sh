@@ -15,7 +15,8 @@ fi
 
 date '+%d-%b-%Y %H:%M:%S: Updating local config files...' >> log.txt
 rclone copy $1/config.txt /home/pi/TimeLapse/
-if [ $? -eq 0] || [ $? -eq 9 ]; then
+suc=$?
+if [ "$suc" -eq 0] || [ "$suc" -eq 9 ]; then
     date '+%d-%b-%Y %H:%M:%S: Done' >> log.txt
 else 
     date '+%d-%b-%Y %H:%M:%S: Failed to update config.' >> log.txt

@@ -28,6 +28,8 @@ class TimeLapseCam():
             Path(self.save_path).mkdir(parents=True)
         if not os.path.exists("Manual"):
             Path("Manual").mkdir(parents=True)
+        if not os.path.exists("Logs"):
+            Path("Logs").mkdir(parents=True)
         write_to_log("Done.")
 
         # Create logging instance
@@ -60,7 +62,7 @@ class TimeLapseCam():
         
     def preview(self, channel):
         with PiCamera() as camera:
-	    write_to_log("Starting Preview")
+            write_to_log("Starting Preview")
             camera.resolution = self.resolution
             camera.start_preview()
             t.sleep(120)
@@ -111,6 +113,13 @@ class TimeLapseCam():
         if params["sleep_time"] != "":
             self.sleep_time = params["sleep_time"]
 
+    def move_log(self):
+        """
+        Function to move the current log file to archives in folder Logs to reduce size of current log file to one week
+        """
+        week_now = datetime.date.today()
+        week_start = week_now - datetime.timedelta(days=6)
+        os.rename("log.txt", "Logs/{}.txt".format(week_start.strftime("%d-%m-%Y")))
     
     
 

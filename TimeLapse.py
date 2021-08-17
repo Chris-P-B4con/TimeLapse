@@ -45,7 +45,7 @@ def setup():
         if (cur_time-last_picture).total_seconds() < camera.interval:
             utils.write_to_log("Last picture was {}. sleeping for {}".format(last_picture, camera.interval-(cur_time-last_picture).total_seconds()))
             if camera.interval - (cur_time-last_picture).total_seconds() > 0:
-		sleep(camera.interval - (cur_time-last_picture).total_seconds())
+                sleep(camera.interval - (cur_time-last_picture).total_seconds())
     cur_time = datetime.now().time()
     cur_weekday = date.today().weekday()
     
@@ -73,6 +73,7 @@ if __name__ == "__main__":
         # Weekly Upload and deleting of files on Sunday
         elif str(cur_weekday) not in camera.shooting_days:
             utils.write_to_log("Weekly update then going to sleep for the day.")
+            camera.move_log()
             camera.sync("weekly")
 
             # Calculate difference between now and next shooting time for sleep

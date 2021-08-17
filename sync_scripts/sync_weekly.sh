@@ -2,7 +2,7 @@
 
 echo "\n" >> log.txt
 date '+%d-%b-%Y %H:%M:%S: Checking free storage...' >> log.txt
-df -h | grep /dev/root
+df -h | grep /dev/root >> log.txt
 
 
 date '+%d-%b-%Y %H:%M:%S: Uploading files to OneDrive...' >> log.txt
@@ -20,5 +20,6 @@ else
 fi
 rclone copy /home/pi/TimeLapse/log.txt $1
 rclone copy /home/pi/TimeLapse/error.txt $1
+rclone copy /home/pi/TimeLapse/Logs $1
 
 echo "\n" >> log.txt
