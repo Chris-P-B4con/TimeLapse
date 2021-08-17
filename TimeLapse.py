@@ -44,7 +44,8 @@ def setup():
         last_picture = pictures[0]
         if (cur_time-last_picture).total_seconds() < camera.interval:
             utils.write_to_log("Last picture was {}. sleeping for {}".format(last_picture, camera.interval-(cur_time-last_picture).total_seconds()))
-            sleep(camera.interval - (cur_time-last_picture).total_seconds())
+            if camera.interval - (cur_time-last_picture).total_seconds() > 0:
+		sleep(camera.interval - (cur_time-last_picture).total_seconds())
     cur_time = datetime.now().time()
     cur_weekday = date.today().weekday()
     
@@ -77,8 +78,10 @@ if __name__ == "__main__":
             # Calculate difference between now and next shooting time for sleep
             now = datetime.now()
             next_shoot = now + timedelta(days=1)
-            next_shoot = next_shoot.replace(hour=camera.start_time.hour-1, minute=camera.start_time.minute, second=camera.start_time.second)
-            sleep((next_shoot-now).total_seconds()) #24 Hours (should wake up at start_time - 1 Hour)
+            next_shoot = next_shoot.replace(hour=camera.start_time.hour-1, minute=camera.start_time.minute+50, second=camera.start_time.second)
+            utils.write_to_log("Slept for {}h".format((next_shoot-now).total_seconds()/60/60))
+	    synced = True
+	    sleep((next_shoot-now).total_seconds()) #24 Hours (should wake up at start_time - 1 Hour)
 
         # End of Workday or before start of workday
         else:
@@ -94,8 +97,9 @@ if __name__ == "__main__":
                 # Calculate difference between now and next shooting time for sleep
                 now = datetime.now()
                 next_shoot = now + timedelta(days=1)
-                next_shoot = next_shoot.replace(hour=camera.start_time.hour-1, minute=camera.start_time.minute-10, second=camera.start_time.second)
-                sleep((next_shoot - now).total_seconds())
+                next_shoot = next_shoot.replace(hour=camera.start_time.hour-1, minute=camera.start_time.minute+50, second=camera.start_time.second)
+                utils.write_to_log("Slept for {}h".format((next_shoot-now).total_seconds()/60/60))
+		sleep((next_shoot - now).total_seconds())
             
             # Reduce sleeping interval to not miss start time
             else:

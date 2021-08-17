@@ -1,13 +1,14 @@
 #!/bin/sh
 
+echo "\n" >> log.txt
 date '+%d-%b-%Y %H:%M:%S: Checking free storage...' >> log.txt
 df -h | grep /dev/root
 
 
 date '+%d-%b-%Y %H:%M:%S: Uploading files to OneDrive...' >> log.txt
 
-rclone copy -vv /home/pi/TimeLapse/Manual $1/Manual --log-file=log.txt
-rclone copy -vv /home/pi/TimeLapse/Pictures/ $1/Pictures  --log-file=log.txt
+rclone copy -v /home/pi/TimeLapse/Manual $1/Manual --log-file=log.txt
+rclone copy -v /home/pi/TimeLapse/Pictures/ $1/Pictures  --log-file=log.txt
 
 suc=$?
 if [ "$suc" -eq 0 ] || [ "$suc" -eq 9 ]; then
@@ -19,3 +20,5 @@ else
 fi
 rclone copy /home/pi/TimeLapse/log.txt $1
 rclone copy /home/pi/TimeLapse/error.txt $1
+
+echo "\n" >> log.txt

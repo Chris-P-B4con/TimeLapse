@@ -60,8 +60,9 @@ class TimeLapseCam():
         
     def preview(self, channel):
         with PiCamera() as camera:
+	    write_to_log("Starting Preview")
             camera.resolution = self.resolution
-            camera.start_prevew()
+            camera.start_preview()
             t.sleep(120)
             
     def sync(self, subscript, file_name = ""):
